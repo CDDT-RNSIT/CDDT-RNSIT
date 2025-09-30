@@ -11,7 +11,6 @@ The Center for Developing Drone Technologies is RNSIT's premier hub for unmanned
 For any queries or to join CDDT:
 - **Email**: cddtcoordinator@rnsit.ac.in
 - **Institution**: RNS Institute of Technology, Bengaluru
-- 
 
 ## 📄 License
 
