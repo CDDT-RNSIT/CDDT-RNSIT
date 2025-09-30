@@ -3,293 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDDT - Center for Developing Drone Technologies | RNSIT</title>
+    <title>CDDT - Center for Developing Drone Technology | RNSIT</title>
     <meta name="description" content="Center for Developing Drone Technologies at RNSIT - Multidisciplinary Engineering Innovation in Unmanned Aerial Systems">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Load Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome for icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Configure Tailwind to use Inter font and our custom colors */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            scroll-behavior: smooth;
+        }
+        
+        html {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Keyframes for drone animation */
+        @keyframes droneHover {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Keyframes for subtle background pulse */
+        @keyframes pulseBg {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+            50% { box-shadow: 0 0 10px 5px rgba(37, 99, 235, 0.7); }
+        }
+
+        .drone-animation i {
+            animation: droneHover 3s ease-in-out infinite;
+            color: #1e40af; /* Blue-800 */
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800">
+
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>CDDT</h2>
-                <span>RNSIT</span>
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-white shadow-lg transition duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo - UPDATED TO USE IMAGE -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#home" class="transition duration-150">
+                        <img src="uploaded:IMG_1206.jpg-99a908c0-2a0d-42cf-bbe6-08c96ec40570" alt="CDDT RNSIT Logo" class="h-12 w-auto">
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <ul class="flex space-x-6">
+                        <li><a href="#home" class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Home</a></li>
+                        <li><a href="#about" class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">About</a></li>
+                        <li><a href="#events" class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Events</a></li>
+                        <li><a href="#projects" class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Projects</a></li>
+                        <li><a href="#contact" class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition duration-150">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Mobile Menu Button (Hamburger) -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-indigo-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <i class="fas fa-bars h-6 w-6" id="menu-icon-open"></i>
+                        <i class="fas fa-times h-6 w-6 hidden" id="menu-icon-close"></i>
+                    </button>
+                </div>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <ul class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <li><a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">Home</a></li>
+                <li><a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">About</a></li>
+                <li><a href="#events" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">Events</a></li>
+                <li><a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">Projects</a></li>
+                <li><a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-700">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Center for Developing Drone Technologies</h1>
-            <h2>Elevating Innovation Through Unmanned Aerial Systems</h2>
-            <p>Where the sky is not the limit, but just the beginning of your journey into cutting-edge aerial innovation</p>
-            <div class="hero-buttons">
-                <a href="#about" class="btn-primary">Explore CDDT</a>
-                <a href="#events" class="btn-secondary">Sky-Fi Ideathon</a>
+    <section id="home" class="pt-24 min-h-screen flex items-center bg-gray-900 text-white relative overflow-hidden">
+        <!-- Background Gradient/Blob -->
+        <div class="absolute inset-0 z-0 opacity-20 bg-gradient-to-br from-indigo-900 via-gray-900 to-blue-900"></div>
+        <div class="absolute top-0 right-0 w-48 h-48 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-indigo-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse animation-delay-2000"></div>
+
+        <div class="max-w-7xl mx-auto px-6 py-12 md:py-24 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <!-- Hero Content -->
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">
+                    Center for <span class="text-blue-400">Developing Drone</span> Technologies
+                </h1>
+                <h2 class="text-xl sm:text-2xl font-light text-gray-300 mb-6">
+                    Elevating Innovation Through Unmanned Aerial Systems
+                </h2>
+                <p class="text-md text-gray-400 mb-8 max-w-lg mx-auto md:mx-0">
+                    Where the sky is not the limit, but just the beginning of your journey into cutting-edge aerial innovation.
+                </p>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <a href="#about" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
+                        Explore CDDT
+                    </a>
+                    <a href="#events" class="px-6 py-3 bg-transparent border-2 border-blue-400 text-blue-400 font-semibold rounded-lg hover:bg-blue-400 hover:text-gray-900 transition duration-300 transform hover:scale-105">
+                        Sky-Fi Ideathon
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="hero-visual">
-            <div class="drone-animation">
-                <i class="fas fa-helicopter"></i>
+
+            <!-- Hero Visual (Drone Icon) -->
+            <div class="hidden md:flex justify-center items-center">
+                <div class="drone-animation bg-white/10 p-10 rounded-full border-4 border-blue-500 shadow-2xl" style="animation: pulseBg 4s ease-in-out infinite;">
+                    <i class="fas fa-helicopter text-7xl lg:text-9xl text-blue-400"></i>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About CDDT</h2>
-            <p class="section-subtitle">RNSIT's Premier Hub for UAV Research, Development, and Education</p>
+    <section id="about" class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2">About CDDT</h2>
+            <p class="text-lg text-indigo-600 font-medium mb-12">RNSIT's Premier Hub for UAV Research, Development, and Education</p>
 
-            <div class="about-grid">
-                <div class="about-card">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Research & Development</h3>
-                    <p>Advanced flight control algorithms, AI integration, and IoT-enabled applications</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="p-8 bg-white border border-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-indigo-600 mb-4"><i class="fas fa-rocket"></i></div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Research & Development</h3>
+                    <p class="text-gray-600">Advanced flight control algorithms, AI integration, and IoT-enabled applications.</p>
                 </div>
-                <div class="about-card">
-                    <i class="fas fa-tools"></i>
-                    <h3>Hands-On Projects</h3>
-                    <p>Build custom prototypes, test systems, and deploy real-world solutions</p>
+                <!-- Card 2 -->
+                <div class="p-8 bg-white border border-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-indigo-600 mb-4"><i class="fas fa-tools"></i></div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Hands-On Projects</h3>
+                    <p class="text-gray-600">Build custom prototypes, test systems, and deploy real-world solutions.</p>
                 </div>
-                <div class="about-card">
-                    <i class="fas fa-trophy"></i>
-                    <h3>Innovation Events</h3>
-                    <p>Sky-Fi Ideathon, technical workshops, and industry collaborations</p>
+                <!-- Card 3 -->
+                <div class="p-8 bg-white border border-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                    <div class="text-4xl text-indigo-600 mb-4"><i class="fas fa-trophy"></i></div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Innovation Events</h3>
+                    <p class="text-gray-600">Sky-Fi Ideathon, technical workshops, and industry collaborations to push boundaries.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Why Join CDDT Section -->
-    <section class="why-join">
-        <div class="container">
-            <h2>Why Join CDDT?</h2>
-            <p class="section-subtitle">Master Multidisciplinary Engineering</p>
+    <section class="py-16 lg:py-24 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2">Why Join CDDT?</h2>
+            <p class="text-lg text-indigo-600 font-medium mb-12">Master Multidisciplinary Engineering for a High-Growth Career</p>
 
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-graduation-cap"></i>
+            <!-- Adjusted to lg:grid-cols-2 and centered the grid for the remaining two cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Benefit Card 1 (Multidisciplinary Engineering) - KEPT -->
+                <div class="p-6 bg-white rounded-xl shadow-xl border-t-4 border-indigo-500">
+                    <div class="flex flex-col items-center">
+                        <div class="text-3xl text-indigo-600 bg-indigo-100 p-3 rounded-full mb-4">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3 text-gray-900">Multidisciplinary Engineering</h3>
+                        <ul class="text-sm text-gray-600 text-left space-y-2">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i> Aerospace Engineering for flight dynamics</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i> Computer Science for AI and autonomy</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i> Electrical Engineering for sensor systems</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i> Mechanical Engineering for structural design</li>
+                        </ul>
                     </div>
-                    <h3>Multidisciplinary Engineering</h3>
-                    <ul>
-                        <li>Aerospace Engineering for flight dynamics</li>
-                        <li>Computer Science for AI and autonomy</li>
-                        <li>Electrical Engineering for sensor systems</li>
-                        <li>Mechanical Engineering for structural design</li>
-                    </ul>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
+                <!-- Benefit Card 2 (Innovation Ecosystem) - KEPT (was Card 4) -->
+                <div class="p-6 bg-white rounded-xl shadow-xl border-t-4 border-purple-500">
+                    <div class="flex flex-col items-center">
+                        <div class="text-3xl text-purple-600 bg-purple-100 p-3 rounded-full mb-4">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3 text-gray-900">Innovation Ecosystem</h3>
+                        <ul class="text-sm text-gray-600 text-left space-y-2">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-indigo-500 mr-2 mt-1"></i> Cross-domain collaboration opportunities</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-indigo-500 mr-2 mt-1"></i> Patent development and research publications</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-indigo-500 mr-2 mt-1"></i> Startup incubation with technical foundation</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-indigo-500 mr-2 mt-1"></i> Industry partnerships and networking</li>
+                        </ul>
                     </div>
-                    <h3>Career Growth</h3>
-                    <ul>
-                        <li>Enter the $127 billion global drone industry</li>
-                        <li>10x higher employability with cross-domain skills</li>
-                        <li>Premium salary packages for drone engineers</li>
-                        <li>Direct pathways to aerospace and tech companies</li>
-                    </ul>
                 </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Real-World Impact</h3>
-                    <ul>
-                        <li>Agricultural automation and precision farming</li>
-                        <li>Smart city solutions and infrastructure</li>
-                        <li>Emergency response and disaster management</li>
-                        <li>Environmental monitoring and conservation</li>
-                    </ul>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Innovation Ecosystem</h3>
-                    <ul>
-                        <li>Cross-domain collaboration opportunities</li>
-                        <li>Patent development and research publications</li>
-                        <li>Startup incubation with technical foundation</li>
-                        <li>Industry partnerships and networking</li>
-                    </ul>
-                </div>
+                
+                <!-- Removed Benefit Card 2 (Career Growth) and Benefit Card 3 (Real-World Impact) -->
             </div>
         </div>
     </section>
 
     <!-- Events Section -->
-    <section id="events" class="events">
-        <div class="container">
-            <h2>Upcoming Events</h2>
+    <section id="events" class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2 text-center">Upcoming Events</h2>
+            <p class="text-lg text-indigo-600 font-medium mb-12 text-center">Join our flagship drone innovation event!</p>
 
-            <div class="event-highlight">
-                <div class="event-content">
-                    <h3>Sky-Fi Drone Ideathon</h3>
-                    <div class="event-date">
-                        <i class="fas fa-calendar"></i>
-                        <span>October 11, 2025</span>
-                    </div>
-                    <div class="event-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>RNSIT Campus</span>
-                    </div>
-                    <p>Join us for an exciting day of drone innovation, where creativity meets cutting-edge technology. Participate in workshops, innovation challenges, and networking opportunities.</p>
-
-                    <div class="event-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>Innovation Workshops</span>
+            <!-- Event Highlight Card -->
+            <div class="bg-gray-50 border border-indigo-100 rounded-xl shadow-2xl overflow-hidden p-8 md:p-12 lg:flex lg:items-center">
+                
+                <!-- Event Content -->
+                <div class="lg:w-2/3 lg:pr-10">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">Sky-Fi Drone Ideathon</h3>
+                    
+                    <div class="flex flex-wrap gap-x-6 gap-y-3 mb-6 text-gray-700">
+                        <div class="flex items-center text-sm font-medium">
+                            <i class="fas fa-calendar text-indigo-500 mr-2"></i>
+                            <span>October 11, 2025</span>
                         </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-trophy"></i>
-                            <span>Competition & Prizes</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-handshake"></i>
-                            <span>Industry Networking</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-certificate"></i>
-                            <span>Certificates</span>
+                        <div class="flex items-center text-sm font-medium">
+                            <i class="fas fa-map-marker-alt text-indigo-500 mr-2"></i>
+                            <span>RNSIT Campus, Bengaluru</span>
                         </div>
                     </div>
 
-                    <a href="mailto:cddt@rnsit.ac.in" class="btn-primary">Register Now</a>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Join us for an exciting day of drone innovation, where creativity meets cutting-edge technology. Participate in workshops, innovation challenges, and networking opportunities to design the next generation of UAV applications.</p>
+
+                    <!-- Event Highlights -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                        <div class="flex items-center p-3 bg-indigo-50 rounded-lg">
+                            <i class="fas fa-lightbulb text-indigo-600 mr-2"></i>
+                            <span class="text-sm font-medium text-gray-800">Innovation Workshops</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-indigo-50 rounded-lg">
+                            <i class="fas fa-trophy text-indigo-600 mr-2"></i>
+                            <span class="text-sm font-medium text-gray-800">Competition & Prizes</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-indigo-50 rounded-lg">
+                            <i class="fas fa-handshake text-indigo-600 mr-2"></i>
+                            <span class="text-sm font-medium text-gray-800">Industry Networking</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-indigo-50 rounded-lg">
+                            <i class="fas fa-certificate text-indigo-600 mr-2"></i>
+                            <span class="text-sm font-medium text-gray-800">Certificates</span>
+                        </div>
+                    </div>
+
+                    <!-- UPDATED: Register Now link points to Google Form and opens in new tab -->
+                    <a href="https://forms.gle/m43oY4cyqpQC3m19A" target="_blank" class="inline-block px-8 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
+                        Register Now
+                    </a>
                 </div>
-                <div class="event-visual">
-                    <div class="event-graphic">
-                        <i class="fas fa-helicopter"></i>
-                        <span class="event-title">SKY-FI</span>
+
+                <!-- Event Visual (Graphic) -->
+                <div class="hidden lg:block lg:w-1/3 flex-shrink-0 relative">
+                    <div class="flex flex-col items-center justify-center p-8 bg-blue-100 rounded-xl border-4 border-blue-500 shadow-inner">
+                        <i class="fas fa-helicopter text-7xl text-blue-600 mb-4"></i>
+                        <span class="text-4xl font-black text-blue-800 tracking-widest">SKY-FI</span>
+                        <span class="text-lg font-medium text-blue-500 mt-1">IDEATHON</span>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>Our Projects</h2>
-            <p class="section-subtitle">Building the Future of Autonomous Flight</p>
+    <section id="projects" class="py-16 lg:py-24 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-3xl lg:text-4xl font-extrabold mb-2">Our Projects</h2>
+            <p class="text-lg text-blue-400 font-medium mb-12">Building the Future of Autonomous Flight</p>
 
-            <div class="projects-grid">
-                <div class="project-card">
-                    <i class="fas fa-seedling"></i>
-                    <h3>Agricultural Drones</h3>
-                    <p>Precision farming solutions with computer vision and IoT integration for crop monitoring and automated spraying systems.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="p-6 bg-gray-800 rounded-xl shadow-xl hover:bg-gray-700 transition duration-300 transform hover:scale-[1.02]">
+                    <div class="text-4xl text-blue-400 mb-4"><i class="fas fa-seedling"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Agricultural Drones</h3>
+                    <p class="text-gray-400 text-sm">Precision farming solutions with computer vision and IoT integration for crop monitoring and automated spraying systems.</p>
                 </div>
 
-                <div class="project-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Security & Surveillance</h3>
-                    <p>AI-powered surveillance drones with facial recognition and anomaly detection for campus and urban security applications.</p>
+                <!-- Project Card 2 -->
+                <div class="p-6 bg-gray-800 rounded-xl shadow-xl hover:bg-gray-700 transition duration-300 transform hover:scale-[1.02]">
+                    <div class="text-4xl text-blue-400 mb-4"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Security & Surveillance</h3>
+                    <p class="text-gray-400 text-sm">AI-powered surveillance drones with facial recognition and anomaly detection for campus and urban security applications.</p>
                 </div>
 
-                <div class="project-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Medical Delivery</h3>
-                    <p>Emergency medical supply delivery system for remote areas with GPS navigation and real-time tracking capabilities.</p>
+                <!-- Project Card 3 -->
+                <div class="p-6 bg-gray-800 rounded-xl shadow-xl hover:bg-gray-700 transition duration-300 transform hover:scale-[1.02]">
+                    <div class="text-4xl text-blue-400 mb-4"><i class="fas fa-heart"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Medical Delivery</h3>
+                    <p class="text-gray-400 text-sm">Emergency medical supply delivery system for remote areas with GPS navigation and real-time tracking capabilities.</p>
                 </div>
 
-                <div class="project-card">
-                    <i class="fas fa-city"></i>
-                    <h3>Smart City Solutions</h3>
-                    <p>Traffic monitoring, infrastructure inspection, and environmental sensing using drone swarms and edge computing.</p>
+                <!-- Project Card 4 -->
+                <div class="p-6 bg-gray-800 rounded-xl shadow-xl hover:bg-gray-700 transition duration-300 transform hover:scale-[1.02]">
+                    <div class="text-4xl text-blue-400 mb-4"><i class="fas fa-city"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Smart City Solutions</h3>
+                    <p class="text-gray-400 text-sm">Traffic monitoring, infrastructure inspection, and environmental sensing using drone swarms and edge computing.</p>
                 </div>
 
-                <div class="project-card">
-                    <i class="fas fa-fire"></i>
-                    <h3>Disaster Response</h3>
-                    <p>Search and rescue operations with thermal imaging, emergency communication relay, and disaster area mapping.</p>
+                <!-- Project Card 5 -->
+                <div class="p-6 bg-gray-800 rounded-xl shadow-xl hover:bg-gray-700 transition duration-300 transform hover:scale-[1.02]">
+                    <div class="text-4xl text-blue-400 mb-4"><i class="fas fa-fire"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Disaster Response</h3>
+                    <p class="text-gray-400 text-sm">Search and rescue operations with thermal imaging, emergency communication relay, and disaster area mapping.</p>
                 </div>
 
-                <div class="project-card">
-                    <i class="fas fa-brain"></i>
-                    <h3>AI Research Platform</h3>
-                    <p>Advanced machine learning algorithms for autonomous navigation, object recognition, and decision-making systems.</p>
+                <!-- Project Card 6 -->
+                <div class="p-6 bg-gray-800 rounded-xl shadow-xl hover:bg-gray-700 transition duration-300 transform hover:scale-[1.02]">
+                    <div class="text-4xl text-blue-400 mb-4"><i class="fas fa-brain"></i></div>
+                    <h3 class="text-xl font-bold mb-3">AI Research Platform</h3>
+                    <p class="text-gray-400 text-sm">Advanced machine learning algorithms for autonomous navigation, object recognition, and decision-making systems.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <p class="section-subtitle">Ready to become a multidisciplinary drone technology pioneer?</p>
+    <section id="contact" class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-2 text-center">Get In Touch</h2>
+            <p class="text-lg text-indigo-600 font-medium mb-12 text-center">Ready to become a multidisciplinary drone technology pioneer?</p>
 
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 bg-gray-50 p-8 rounded-xl shadow-2xl">
+                
+                <!-- Contact Info -->
+                <div class="lg:col-span-1 space-y-8">
+                    
+                    <div class="flex items-start">
+                        <div class="text-2xl text-indigo-600 flex-shrink-0 mt-1 mr-4">
+                            <i class="fas fa-envelope"></i>
+                        </div>
                         <div>
-                            <h3>Email</h3>
-                            <a href="mailto:cddt@rnsit.ac.in">cddt@rnsit.ac.in</a>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-1">Email</h3>
+                            <a href="mailto:cddt@rnsit.ac.in" class="text-indigo-600 hover:text-indigo-800 transition duration-150">cddt@rnsit.ac.in</a>
                         </div>
                     </div>
 
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
+                    <div class="flex items-start">
+                        <div class="text-2xl text-indigo-600 flex-shrink-0 mt-1 mr-4">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
                         <div>
-                            <h3>Location</h3>
-                            <p>RNS Institute of Technology<br>Channasandra, Bengaluru, Karnataka</p>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-1">Location</h3>
+                            <p class="text-gray-600">RNS Institute of Technology<br>Channasandra, Bengaluru, Karnataka</p>
                         </div>
                     </div>
 
-                    <div class="contact-item">
-                        <i class="fas fa-users"></i>
+                    <div class="flex items-start">
+                        <div class="text-2xl text-indigo-600 flex-shrink-0 mt-1 mr-4">
+                            <i class="fas fa-users"></i>
+                        </div>
                         <div>
-                            <h3>Join Us</h3>
-                            <p>Open to all engineering students<br>Multidisciplinary collaboration welcome</p>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-1">Join Us</h3>
+                            <p class="text-gray-600">Open to all engineering students<br>Multidisciplinary collaboration welcome</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="contact-form">
-                    <form action="mailto:cddt@rnsit.ac.in" method="post" enctype="text/plain">
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
+                <!-- Contact Form -->
+                <div class="lg:col-span-2">
+                    <form action="mailto:cddt@rnsit.ac.in" method="post" enctype="text/plain" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 shadow-sm">
+                            <input type="email" name="email" placeholder="Your Email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 shadow-sm">
                         </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <select name="department" required>
-                                <option value="">Select Department</option>
-                                <option value="CSE">Computer Science Engineering</option>
-                                <option value="ISE">Information Science Engineering</option>
-                                <option value="ECE">Electronics & Communication</option>
-                                <option value="EEE">Electrical & Electronics</option>
-                                <option value="MECH">Mechanical Engineering</option>
-                                <option value="CIVIL">Civil Engineering</option>
-                                <option value="OTHER">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary">Send Message</button>
+                        
+                        <select name="department" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 shadow-sm text-gray-500">
+                            <option value="" disabled selected>Select Department</option>
+                            <option value="CSE">Computer Science Engineering</option>
+                            <option value="ISE">Information Science Engineering</option>
+                            <option value="ECE">Electronics & Communication</option>
+                            <option value="EEE">Electrical & Electronics</option>
+                            <option value="MECH">Mechanical Engineering</option>
+                            <option value="CIVIL">Civil Engineering</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                        
+                        <textarea name="message" placeholder="Your Message or Query" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 shadow-sm"></textarea>
+                        
+                        <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-xl hover:bg-indigo-700 transition duration-300 transform hover:scale-[1.01]">
+                            Send Message
+                        </button>
                     </form>
                 </div>
             </div>
@@ -297,38 +387,78 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>CDDT</h3>
-                    <p>Center for Developing Drone Technologies</p>
-                    <p>RNS Institute of Technology</p>
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Section 1: Logo & Tagline -->
+                <div class="col-span-2 md:col-span-1">
+                    <h3 class="text-3xl font-extrabold text-blue-400 tracking-wider mb-2">CDDT</h3>
+                    <p class="text-sm text-gray-400">Center for Developing Drone Technologies</p>
+                    <p class="text-xs text-gray-500 mt-2">RNS Institute of Technology</p>
                 </div>
 
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#about">About CDDT</a></li>
-                        <li><a href="#events">Events</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                <!-- Section 2: Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#about" class="hover:text-indigo-400 transition duration-150">About CDDT</a></li>
+                        <li><a href="#events" class="hover:text-indigo-400 transition duration-150">Upcoming Events</a></li>
+                        <li><a href="#projects" class="hover:text-indigo-400 transition duration-150">Our Projects</a></li>
+                        <li><a href="#contact" class="hover:text-indigo-400 transition duration-150">Contact Us</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p><i class="fas fa-envelope"></i> cddt@rnsit.ac.in</p>
-                    <p><i class="fas fa-map-marker-alt"></i> RNSIT, Bengaluru</p>
+                <!-- Section 3: Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Contact Info</h4>
+                    <p class="text-sm text-gray-400 mb-2"><i class="fas fa-envelope text-blue-400 w-5 mr-2"></i> cddt@rnsit.ac.in</p>
+                    <p class="text-sm text-gray-400"><i class="fas fa-map-marker-alt text-blue-400 w-5 mr-2"></i> RNSIT, Bengaluru</p>
+                </div>
+
+                <!-- Section 4: Social Media (Placeholder) -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Follow Us</h4>
+                    <div class="flex space-x-4 text-xl">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-150"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-150"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition duration-150"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <p>&copy; 2025 Center for Developing Drone Technologies, RNSIT. All rights reserved.</p>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p class="text-xs text-gray-500">&copy; 2025 Center for Developing Drone Technologies, RNSIT. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <!-- JavaScript for Mobile Menu Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            const navLinks = menu.querySelectorAll('a');
+            const openIcon = document.getElementById('menu-icon-open');
+            const closeIcon = document.getElementById('menu-icon-close');
+
+            const toggleMenu = () => {
+                const isExpanded = menu.classList.contains('hidden');
+                menu.classList.toggle('hidden', !isExpanded);
+                openIcon.classList.toggle('hidden', !isExpanded);
+                closeIcon.classList.toggle('hidden', isExpanded);
+            };
+
+            button.addEventListener('click', toggleMenu);
+
+            // Close menu when a link is clicked (for smoother navigation)
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!menu.classList.contains('hidden')) {
+                        toggleMenu();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
